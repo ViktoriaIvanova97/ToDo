@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Context } from "./Contex";
+import { Context } from "./Context";
 
 const SortTask = () => {
   const { setSortOrder } = useContext(Context);

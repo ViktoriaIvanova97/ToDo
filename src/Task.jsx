@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Context } from "./Contex";
+import { Context } from "./Context";
 import { useState } from "react";
 const Task = ({ task }) => {
   const { deleteTask, isDoneChecked, editTitle } = useContext(Context);

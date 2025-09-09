@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Context } from "./Contex";
+import { Context } from "./Context";
 
 const Input = () => {
   const { setTasks } = useContext(Context);

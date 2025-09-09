@@ -1,6 +1,6 @@
 import Task from "./Task";
 import { useContext } from "react";
-import { Context } from "./Contex";
+import { Context } from "./Context";
 import SortTask from "./SortTask";
 
 const TasksList = () => {

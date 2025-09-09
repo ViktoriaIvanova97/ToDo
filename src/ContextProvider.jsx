@@ -1,4 +1,4 @@
-import { Context } from "./Contex";
+import { Context } from "./Context";
 import { useState, useEffect, useMemo, useCallback } from "react";
 
 const ContextProvider = ({ children }) => {

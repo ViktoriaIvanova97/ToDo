@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Context } from "./Contex";
+import { Context } from "./Context";
 
 const TasksFilter = () => {
   const { setFilter } = useContext(Context);

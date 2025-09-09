@@ -2,7 +2,7 @@ import "./App.css";
 
 import Input from "./Input";
 import TasksList from "./TasksList";
-import TasksFilter from "./TaskFilter";
+import TasksFilter from "./TasksFilter";
 import DeleteCompleted from "./DeleteCompleted";
 import CountActive from "./CountActive";
 
