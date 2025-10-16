@@ -1,17 +1,15 @@
-import { useContext } from "react";
-import { Context } from "./Context";
 
-const SortTask = () => {
-  const { setSortOrder } = useContext(Context);
+// const SortTask = () => {
 
-  return (
-    <div className="style">
-      <button onClick={() => setSortOrder("desc")}>Новые сверху</button>
-      <button onClick={() => setSortOrder("asc")} style={{ marginLeft: "5px" }}>
-        Новые снизу
-      </button>
-    </div>
-  );
-};
 
-export default SortTask;
+//   return (
+//     <div className="style">
+//       <button>Новые сверху</button>
+//       <button style={{ marginLeft: "5px" }}>
+//         Новые снизу
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default SortTask;

@@ -1,24 +1,36 @@
-import { useContext } from "react";
-import { Context } from "./Context";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 const Task = ({ task }) => {
-  const { deleteTask, isDoneChecked, editTitle } = useContext(Context);
+  const { tasks } = useSelector((store) => store.tasks);
   const [edit, setEdit] = useState(false);
   const [editTask, setEditTask] = useState(task.title);
 
+  const dispatch = useDispatch();
+
+  const isDoneChecked = () => {};
+
+  const deleteTask = () => {
+    dispatch({ type: "delete", payload: task.id });
+  };
+
   const handleDownEnter = (e) => {
     if (e.key === "Enter") {
-      editTitle(task.id, editTask);
-      setEditTask("");
-      setEdit((edit) => !edit);
+      dispatch({ type: "edit", payload: { id: task.id, title: editTask } });
+      setEdit(false);
     }
   };
+
+  const toggleDone = () => {
+    dispatch({ type: "toggleDone", payload: task.id });
+  };
+
   return (
-    <div className="style" style={{paddingTop:'10px'}}>
+    <div className="style" style={{ paddingTop: "10px" }}>
       <input
         type="checkbox"
         checked={task.isDone}
-        onChange={() => isDoneChecked(task.id)}
+        onChange={toggleDone}
       />
       {!edit ? (
         <p className={task.isDone ? "active" : ""}>{task.title}</p>
@@ -30,7 +42,7 @@ const Task = ({ task }) => {
         />
       )}
       <button onClick={() => setEdit((edit) => !edit)}>Изменить</button>
-      <button onClick={() => deleteTask(task.id)}>&times;</button>
+      <button onClick={deleteTask}>&times;</button>
     </div>
   );
 };

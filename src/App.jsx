@@ -1,9 +1,9 @@
 import "./App.css";
 import Input from "./Input";
 import TasksList from "./TasksList";
-import TasksFilter from "./TasksFilter";
-import DeleteCompleted from "./DeleteCompleted";
-import CountActive from "./CountActive";
+// import TasksFilter from "./TasksFilter";
+// import DeleteCompleted from "./DeleteCompleted";
+// import CountActive from "./CountActive";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
       <div className="component">
         <TasksList />
       </div>
-      <div className="component">
+      {/* <div className="component">
         <TasksFilter />
       </div>
       <div
@@ -38,8 +38,8 @@ function App() {
         }}
       >
         <DeleteCompleted />
-        <CountActive />
-      </div>
+        <CountActive /> 
+      </div> */}
     </div>
   );
 }
