@@ -1,13 +1,13 @@
+import { useSelector} from "react-redux";
 
+const CountActive = () => {
+  const { tasks } = useSelector((store) => store.tasks);
+  const count = tasks.filter((item) => !item.isDone).length;
+  return (
+    <div>
+      <p>Осталось дел: {count}</p>
+    </div>
+  );
+};
 
-// const CountActive = () => {
-
-//   const count = tasks.filter((item) => !item.isDone).length;
-//   return (
-//     <div >
-//       <p>Осталось дел: {count}</p>
-//     </div>
-//   );
-// };
-
-// export default CountActive;
+export default CountActive;

@@ -10,8 +10,11 @@ const Input = () => {
   };
 
   const addNewTask = () => {
-    dispatch({ type: "add", payload: text });
-    dispatch({ type: "zero" });
+    const trimmedText = text.trim();
+    if (trimmedText !== "") {
+      dispatch({ type: "add", payload: text });
+      dispatch({ type: "zero" });
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -28,7 +31,6 @@ const Input = () => {
         placeholder="Введите текст задачи..."
       />
       <button onClick={addNewTask}>Добавить</button>
-      {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
     </div>
   );
 };

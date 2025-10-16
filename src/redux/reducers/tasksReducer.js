@@ -1,6 +1,7 @@
 const initialValue = {
-  tasks: [],
-  filter: "all",
+  tasks: JSON.parse(localStorage.getItem("tasks")) || [],
+  filter: localStorage.getItem("filter") || "all",
+  sortOrder: localStorage.getItem("sortOrder") || "desc",
 };
 
 export const tasksReducer = (store = initialValue, action) => {
@@ -10,7 +11,12 @@ export const tasksReducer = (store = initialValue, action) => {
         ...store,
         tasks: [
           ...store.tasks,
-          { id: Date.now(), title: action.payload, isDone: false },
+          {
+            id: Date.now(),
+            title: action.payload,
+            isDone: false,
+            createdAt: Date.now(),
+          },
         ],
       };
     case "delete":
@@ -36,6 +42,25 @@ export const tasksReducer = (store = initialValue, action) => {
           item.id === action.payload ? { ...item, isDone: !item.isDone } : item,
         ),
       };
+    case "setSortOrder":
+      const sortedTasks = [...store.tasks].sort((a, b) =>
+        action.payload === "desc"
+          ? b.createdAt - a.createdAt
+          : a.createdAt - b.createdAt,
+      );
+
+      return {
+        ...store,
+        sortOrder: action.payload,
+        tasks: sortedTasks,
+      };
+
+    case "setFilter":
+      return { ...store, filter: action.payload };
+
+	  case "deleteCompleted": {
+		  return {...store, tasks:store.tasks.filter((item) => !item.isDone)}
+	  }
     default:
       return store;
   }

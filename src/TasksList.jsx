@@ -1,21 +1,21 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 import Task from "./Task";
-// import SortTask from "./SortTask";
+import SortTask from "./SortTask";
 
 const TasksList = () => {
-  const { tasks } = useSelector((store) => store.tasks);
-	
-//   const filteredTasks = tasks.filter((item) => {
-//     if (filter === "activeTask") return !item.isDone;
-//     if (filter === "completedTask") return item.isDone;
-//     return true;
-//   });
+  const { tasks, filter } = useSelector((store) => store.tasks);
+
+  const filteredTasks = tasks.filter((item) => {
+    if (filter === "activeTask") return !item.isDone;
+    if (filter === "completedTask") return item.isDone;
+    return true;
+  });
 
   return (
     <div>
-      {/* <SortTask /> */}
-      {tasks.length > 0 ? (
-        tasks.map((item) => <Task key={item.id} task={item} />)
+      <SortTask />
+      {filteredTasks.length > 0 ? (
+        filteredTasks.map((item) => <Task key={item.id} task={item} />)
       ) : (
         <p
           style={{

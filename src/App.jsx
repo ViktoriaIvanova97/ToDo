@@ -1,11 +1,28 @@
 import "./App.css";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import SortTask from "./SortTask";
 import Input from "./Input";
 import TasksList from "./TasksList";
-// import TasksFilter from "./TasksFilter";
-// import DeleteCompleted from "./DeleteCompleted";
-// import CountActive from "./CountActive";
+import TasksFilter from "./TasksFilter";
+import DeleteCompleted from "./DeleteCompleted";
+import CountActive from "./CountActive";
 
 function App() {
+  const { tasks, filter, sortOrder } = useSelector((store) => store.tasks);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
+  useEffect(() => {
+    localStorage.setItem("filter", filter);
+  }, [filter]);
+
+  useEffect(() => {
+    localStorage.setItem("sortOrder", sortOrder);
+  }, [sortOrder]);
+
   return (
     <div
       style={{
@@ -23,10 +40,10 @@ function App() {
       <div className="component">
         <TasksList />
       </div>
-      {/* <div className="component">
+      <div className="component">
         <TasksFilter />
       </div>
-      <div
+       <div
         className="component"
         style={{
           display: "flex",
@@ -39,7 +56,7 @@ function App() {
       >
         <DeleteCompleted />
         <CountActive /> 
-      </div> */}
+      </div>
     </div>
   );
 }

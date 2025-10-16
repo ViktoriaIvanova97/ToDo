@@ -8,8 +8,6 @@ const Task = ({ task }) => {
 
   const dispatch = useDispatch();
 
-  const isDoneChecked = () => {};
-
   const deleteTask = () => {
     dispatch({ type: "delete", payload: task.id });
   };
@@ -27,11 +25,7 @@ const Task = ({ task }) => {
 
   return (
     <div className="style" style={{ paddingTop: "10px" }}>
-      <input
-        type="checkbox"
-        checked={task.isDone}
-        onChange={toggleDone}
-      />
+      <input type="checkbox" checked={task.isDone} onChange={toggleDone} />
       {!edit ? (
         <p className={task.isDone ? "active" : ""}>{task.title}</p>
       ) : (
