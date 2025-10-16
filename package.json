@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://ViktoriaIvanova97.github.io/ToDo",
+  "homepage": "https://viktoriaivanova97.github.io/todo-redux",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
