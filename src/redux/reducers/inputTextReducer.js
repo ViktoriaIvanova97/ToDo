@@ -9,7 +9,7 @@ export const inputTextReducer = (store = initialValue, action) => {
     case "zero":
       return { ...store, text: "" };
 
-    default:п
+    default:
       return store;
   }
 };
