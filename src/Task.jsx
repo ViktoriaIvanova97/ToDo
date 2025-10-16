@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Task = ({ task }) => {
-  const { tasks } = useSelector((store) => store.tasks);
   const [edit, setEdit] = useState(false);
   const [editTask, setEditTask] = useState(task.title);
 
@@ -24,8 +23,13 @@ const Task = ({ task }) => {
   };
 
   return (
-    <div className="style" style={{ paddingTop: "10px" }}>
-      <input type="checkbox" checked={task.isDone} onChange={toggleDone} />
+    <div className="style" style={{ paddingTop: "20px" }}>
+    <label className="checkbox-wrapper">
+      <input
+        type="checkbox"
+        checked={task.isDone}
+        onChange={toggleDone}
+      />
       {!edit ? (
         <p className={task.isDone ? "active" : ""}>{task.title}</p>
       ) : (
@@ -35,9 +39,11 @@ const Task = ({ task }) => {
           onKeyDown={handleDownEnter}
         />
       )}
-      <button onClick={() => setEdit((edit) => !edit)}>Изменить</button>
-      <button onClick={deleteTask}>&times;</button>
-    </div>
+    </label>
+    <button onClick={() => setEdit((edit) => !edit)}>Изменить</button>
+    <button onClick={deleteTask}>&times;</button>
+  </div>
+  
   );
 };
 

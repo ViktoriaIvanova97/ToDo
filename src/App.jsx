@@ -43,19 +43,19 @@ function App() {
       <div className="component">
         <TasksFilter />
       </div>
-       <div
+      <div
         className="component"
         style={{
           display: "flex",
           width: "370px",
           alignItems: "center",
           justifyContent: "space-between",
-          color:'#333',
-          fontWeight: '500',
+          color: "#333",
+          fontWeight: "500",
         }}
       >
         <DeleteCompleted />
-        <CountActive /> 
+        <CountActive />
       </div>
     </div>
   );

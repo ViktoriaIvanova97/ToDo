@@ -23,7 +23,7 @@ const Input = () => {
   console.log(tasks);
   return (
     <div className="style">
-      <input
+      <input className="inputTask"
         value={text}
         onChange={handleChange}
         onKeyDown={handleKeyPress}

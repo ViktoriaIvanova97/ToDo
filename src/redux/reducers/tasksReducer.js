@@ -43,24 +43,22 @@ export const tasksReducer = (store = initialValue, action) => {
         ),
       };
     case "setSortOrder":
-      const sortedTasks = [...store.tasks].sort((a, b) =>
-        action.payload === "desc"
-          ? b.createdAt - a.createdAt
-          : a.createdAt - b.createdAt,
-      );
-
       return {
         ...store,
         sortOrder: action.payload,
-        tasks: sortedTasks,
+        tasks: [...store.tasks].sort((a, b) =>
+          action.payload === "desc"
+            ? b.createdAt - a.createdAt
+            : a.createdAt - b.createdAt,
+        ),
       };
 
     case "setFilter":
       return { ...store, filter: action.payload };
 
-	  case "deleteCompleted": {
-		  return {...store, tasks:store.tasks.filter((item) => !item.isDone)}
-	  }
+    case "deleteCompleted": {
+      return { ...store, tasks: store.tasks.filter((item) => !item.isDone) };
+    }
     default:
       return store;
   }

@@ -1,7 +1,6 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const DeleteCompleted = () => {
-  const { tasks } = useSelector((store) => store.tasks);
   const dispatch = useDispatch();
 
   const deleteCompleted = () => {
