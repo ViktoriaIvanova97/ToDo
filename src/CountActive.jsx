@@ -1,11 +1,10 @@
-import { useContext } from "react";
-import { Context } from "./Context";
+import { useSelector} from "react-redux";
 
 const CountActive = () => {
-  const { tasks } = useContext(Context);
+  const { tasks } = useSelector((store) => store.tasks);
   const count = tasks.filter((item) => !item.isDone).length;
   return (
-    <div >
+    <div>
       <p>Осталось дел: {count}</p>
     </div>
   );

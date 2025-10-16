@@ -1,48 +1,36 @@
-import { useState, useContext } from "react";
-import { Context } from "./Context";
+import { useSelector, useDispatch } from "react-redux";
 
 const Input = () => {
-  const { setTasks } = useContext(Context);
-  const [text, setText] = useState("");
-  const [error, setError] = useState("");
+  const { text } = useSelector((store) => store.text);
+  const { tasks } = useSelector((store) => store.tasks);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    setText(e.target.value);
-    if (error) setError("");
+    dispatch({ type: "change", payload: e.target.value });
   };
 
-  const handleTasks = () => {
-    if (text.trim() === "") {
-      setError("Поле не может быть пустым!");
-      return;
+  const addNewTask = () => {
+    const trimmedText = text.trim();
+    if (trimmedText !== "") {
+      dispatch({ type: "add", payload: text });
+      dispatch({ type: "zero" });
     }
-
-    const newTask = {
-      id: Date.now(),
-      title: text,
-      isDone: false,
-      createdAt: Date.now(),
-    };
-
-    setTasks((tasks) => [...tasks, newTask]);
-    setText("");
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === "Enter") handleTasks();
+    if (e.key === "Enter") addNewTask();
   };
-
+  console.log(tasks);
   return (
     <div className="style">
-      <input
+      <input className="inputTask"
         value={text}
         onChange={handleChange}
         onKeyDown={handleKeyPress}
         type="text"
         placeholder="Введите текст задачи..."
       />
-      <button onClick={handleTasks}>Добавить</button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      <button onClick={addNewTask}>Добавить</button>
     </div>
   );
 };

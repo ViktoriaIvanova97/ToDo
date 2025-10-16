@@ -1,18 +1,15 @@
-import { useContext } from "react";
-import { Context } from "./Context";
+import { useDispatch } from "react-redux";
 
 const DeleteCompleted = () => {
-  const { setTasks } = useContext(Context);
+  const dispatch = useDispatch();
+
+  const deleteCompleted = () => {
+    dispatch({ type: "deleteCompleted" });
+  };
 
   return (
-    < div >
-      <button
-        onClick={() =>
-          setTasks((tasks) => tasks.filter((item) => !item.isDone))
-        }
-      >
-        Очистить выполненные
-      </button>
+    <div>
+      <button onClick={deleteCompleted}>Очистить выполненные</button>
     </div>
   );
 };

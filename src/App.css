@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background: #fdf5e6;
 }
 
 .logo {
@@ -13,32 +14,32 @@ body {
   text-decoration: line-through;
 }
 button {
-  background-color: #ccc;
+  background-color: #d3162121;
   color: #333;
   padding: 10px 20px;
   border: none;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   font-size: 16px;
   transition: all 0.2s ease;
 }
 
 button:hover {
-  background-color: #bbb;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  background-color: #d3162130;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 1.05);
 }
 
 button:active {
   transform: translateY(0);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 1.05);
 }
 button:focus{
   outline: none;
 }
 .style{
-  width: 370px;
+  min-width: 370px;
   display: flex;
   gap: 15px;
   align-items: center;
@@ -47,11 +48,11 @@ button:focus{
   font-weight: 500;
 }
 .component {
-  background-color: rgb(221, 218, 218);
+  background-color: rgb(38 16 135 / 3%);
   padding: 15px;
   margin: 10px 0;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* легкая тень */
+  box-shadow: 0 4px 6px rgba(0, 0.6, 0, 0.6);
 }
 
 .logo:hover {
@@ -60,6 +61,88 @@ button:focus{
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
+
+.inputTask {
+  background-color: #ffffff;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  min-width: 200px;
+}
+
+.inputTask:focus {
+  box-shadow: 0 0 8px #2424244d;
+}
+
+.inputTask::placeholder {
+  color: #888;
+  opacity: 0.8;
+}
+
+.inputTask:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+
+.checkbox-wrapper input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #00000000;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.checkbox-wrapper input[type="checkbox"]:checked {
+  background-color: #213547;
+  box-shadow: 0 0 5px #213547;
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+.checkbox-wrapper input[type="checkbox"]:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 5px #213547;
+}
+
+
+.checkbox-wrapper p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+}
+
 
 @keyframes logo-spin {
   from {

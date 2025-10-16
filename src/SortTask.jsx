@@ -1,13 +1,26 @@
-import { useContext } from "react";
-import { Context } from "./Context";
+import { useSelector, useDispatch } from "react-redux";
 
 const SortTask = () => {
-  const { setSortOrder } = useContext(Context);
+  const { sortOrder } = useSelector((store) => store.tasks.sortOrder);
+  const dispatch = useDispatch();
 
+  const sortUp = () => {
+    dispatch({ type: "setSortOrder", payload: "desc" });
+  };
+
+  const sortDown = () => {
+    dispatch({ type: "setSortOrder", payload: "asc" });
+  };
   return (
     <div className="style">
-      <button onClick={() => setSortOrder("desc")}>Новые сверху</button>
-      <button onClick={() => setSortOrder("asc")} style={{ marginLeft: "5px" }}>
+      <button onClick={sortUp} disabled={sortOrder === "desc"}>
+        Новые сверху
+      </button>
+      <button
+        onClick={sortDown}
+        disabled={sortOrder === "asc"}
+        style={{ marginLeft: "5px" }}
+      >
         Новые снизу
       </button>
     </div>
