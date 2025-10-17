@@ -1,9 +1,9 @@
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import Task from "./Task";
 import SortTask from "./SortTask";
 
 const TasksList = () => {
-  const { tasks, filter } = useSelector((store) => store.tasks);
+  const { tasks, filter } = useSelector((store) => store);
 
   const filteredTasks = tasks.filter((item) => {
     if (filter === "activeTask") return !item.isDone;

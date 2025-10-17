@@ -1,12 +1,6 @@
-import { legacy_createStore, combineReducers } from "redux";
-import { inputTextReducer } from "./reducers/inputTextReducer";
+import { legacy_createStore } from "redux";
 import { tasksReducer } from "./reducers/tasksReducer";
 
-const store = legacy_createStore(
-  combineReducers({
-    text: inputTextReducer,
-    tasks: tasksReducer,
-  }),
-);
+const store = legacy_createStore(tasksReducer);
 
 export default store;

@@ -1,7 +1,7 @@
 import { useSelector} from "react-redux";
 
 const CountActive = () => {
-  const { tasks } = useSelector((store) => store.tasks);
+  const { tasks } = useSelector((store) => store);
   const count = tasks.filter((item) => !item.isDone).length;
   return (
     <div>

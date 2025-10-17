@@ -2,14 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 const TasksFilter = () => {
   const dispatch = useDispatch();
-  const { filter } = useSelector((store) => store.tasks.filter);
+  const {filter }= useSelector((store) => store);
 
   const setFilter = (type) => {
     dispatch({ type: "setFilter", payload: type });
   };
 
   return (
-    <div  className="style">
+    <div className="style">
       <button onClick={() => setFilter("all")} disabled={filter === "all"}>
         Все
       </button>

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 
 const SortTask = () => {
-  const { sortOrder } = useSelector((store) => store.tasks.sortOrder);
+  const { sortOrder } = useSelector((store) => store);
   const dispatch = useDispatch();
 
   const sortUp = () => {

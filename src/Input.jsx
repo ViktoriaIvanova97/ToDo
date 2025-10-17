@@ -1,30 +1,30 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 const Input = () => {
-  const { text } = useSelector((store) => store.text);
-  const { tasks } = useSelector((store) => store.tasks);
+  const [value, setValue] = useState("");
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    dispatch({ type: "change", payload: e.target.value });
+    setValue(e.target.value);
   };
 
   const addNewTask = () => {
-    const trimmedText = text.trim();
+    const trimmedText = value.trim();
     if (trimmedText !== "") {
-      dispatch({ type: "add", payload: text });
-      dispatch({ type: "zero" });
+      dispatch({ type: "add", payload: trimmedText });
+      setValue("");
     }
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") addNewTask();
   };
-  console.log(tasks);
   return (
     <div className="style">
-      <input className="inputTask"
-        value={text}
+      <input
+        className="inputTask"
+        value={value}
         onChange={handleChange}
         onKeyDown={handleKeyPress}
         type="text"
