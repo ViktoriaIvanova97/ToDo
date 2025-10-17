@@ -31,9 +31,9 @@ const Task = ({ task }) => {
         onChange={toggleDone}
       />
       {!edit ? (
-        <p className={task.isDone ? "active" : ""}>{task.title}</p>
+        <p className={task.isDone ? "active" : ""} style={{width:'125px'}}>{task.title}</p>
       ) : (
-        <input
+        <input className="editInput"
           value={editTask}
           onChange={(e) => setEditTask(e.target.value)}
           onKeyDown={handleDownEnter}
