@@ -1,15 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
+import { selectSortOrder } from "./redux/selectors";
+import { setSortOrderAction } from "./redux/actions/tasksActions";
 
 const SortTask = () => {
-  const { sortOrder } = useSelector((store) => store);
+  const sortOrder = useSelector(selectSortOrder);
   const dispatch = useDispatch();
 
   const sortUp = () => {
-    dispatch({ type: "setSortOrder", payload: "desc" });
+    dispatch(setSortOrderAction("desc"));
   };
 
   const sortDown = () => {
-    dispatch({ type: "setSortOrder", payload: "asc" });
+    dispatch(setSortOrderAction("asc"));
   };
   return (
     <div className="style">

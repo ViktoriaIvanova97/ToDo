@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
+import { selectFilter } from "./redux/selectors";
+import { setFilterAction } from "./redux/actions/tasksActions";
 
 const TasksFilter = () => {
   const dispatch = useDispatch();
-  const {filter }= useSelector((store) => store);
+  const filter = useSelector(selectFilter);
 
-  const setFilter = (type) => {
-    dispatch({ type: "setFilter", payload: type });
+  const setFilter = (filter) => {
+    dispatch(setFilterAction(filter));
   };
 
   return (

@@ -1,10 +1,11 @@
 import { useDispatch } from "react-redux";
+import { deleteCompletedTasksAction } from "./redux/actions/tasksActions";
 
 const DeleteCompleted = () => {
   const dispatch = useDispatch();
 
   const deleteCompleted = () => {
-    dispatch({ type: "deleteCompleted" });
+    dispatch(deleteCompletedTasksAction());
   };
 
   return (
