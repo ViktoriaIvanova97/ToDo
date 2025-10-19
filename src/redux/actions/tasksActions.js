@@ -1,33 +1,33 @@
 export const addTaskAction = (title) => ({
-  type: "add",
+  type: 'add',
   payload: title,
-});
+})
 
 export const deleteTaskAction = (id) => ({
-  type: "delete",
+  type: 'delete',
   payload: id,
-});
+})
 
 export const editTaskAction = (id, title) => ({
-  type: "edit",
+  type: 'edit',
   payload: { id, title },
-});
+})
 
 export const toggleDoneTaskAction = (id) => ({
-  type: "toggleDone",
+  type: 'toggleDone',
   payload: id,
-});
+})
 
 export const setSortOrderAction = (order) => ({
-  type: "setSortOrder",
+  type: 'setSortOrder',
   payload: order,
-});
+})
 
 export const setFilterAction = (filter) => ({
-  type: "setFilter",
+  type: 'setFilter',
   payload: filter,
-});
+})
 
 export const deleteCompletedTasksAction = () => ({
-  type: "deleteCompleted",
-});
+  type: 'deleteCompleted',
+})

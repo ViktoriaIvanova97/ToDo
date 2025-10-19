@@ -1,12 +1,12 @@
 const initialValue = {
   tasks: [],
-  filter: "all",
-  sortOrder: "desc",
-};
+  filter: 'all',
+  sortOrder: 'desc',
+}
 
 export const tasksReducer = (store = initialValue, action) => {
   switch (action.type) {
-    case "add":
+    case 'add':
       return {
         ...store,
         tasks: [
@@ -18,43 +18,43 @@ export const tasksReducer = (store = initialValue, action) => {
             createdAt: Date.now(),
           },
         ],
-      };
-    case "delete":
+      }
+    case 'delete':
       return {
         ...store,
         tasks: store.tasks.filter((item) => item.id !== action.payload),
-      };
+      }
 
-    case "edit":
+    case 'edit':
       return {
         ...store,
         tasks: store.tasks.map((item) =>
           item.id === action.payload.id
             ? { ...item, title: action.payload.title }
-            : item,
+            : item
         ),
-      };
+      }
 
-    case "toggleDone":
+    case 'toggleDone':
       return {
         ...store,
         tasks: store.tasks.map((item) =>
-          item.id === action.payload ? { ...item, isDone: !item.isDone } : item,
+          item.id === action.payload ? { ...item, isDone: !item.isDone } : item
         ),
-      };
-	  case "setSortOrder":
-		return {
-		  ...store,
-		  sortOrder: action.payload,
-		};
+      }
+    case 'setSortOrder':
+      return {
+        ...store,
+        sortOrder: action.payload,
+      }
 
-    case "setFilter":
-      return { ...store, filter: action.payload };
+    case 'setFilter':
+      return { ...store, filter: action.payload }
 
-    case "deleteCompleted": {
-      return { ...store, tasks: store.tasks.filter((item) => !item.isDone) };
+    case 'deleteCompleted': {
+      return { ...store, tasks: store.tasks.filter((item) => !item.isDone) }
     }
     default:
-      return store;
+      return store
   }
-};
+}

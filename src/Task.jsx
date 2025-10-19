@@ -1,49 +1,49 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import {
   deleteTaskAction,
   editTaskAction,
   toggleDoneTaskAction,
-} from "./redux/actions/tasksActions";
+} from './redux/actions/tasksActions'
 
 const Task = ({ task }) => {
-  const [edit, setEdit] = useState(false);
-  const [editTask, setEditTask] = useState(task.title);
+  const [edit, setEdit] = useState(false)
+  const [editTask, setEditTask] = useState(task.title)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const deleteTask = () => {
-    dispatch(deleteTaskAction(task.id));
-  };
+    dispatch(deleteTaskAction(task.id))
+  }
 
   const toggleDone = () => {
-    dispatch(toggleDoneTaskAction(task.id));
-  };
+    dispatch(toggleDoneTaskAction(task.id))
+  }
 
   const handleDownEnter = (e) => {
-    if (e.key === "Enter") {
-      saveEdit();
+    if (e.key === 'Enter') {
+      saveEdit()
     }
-  };
+  }
   const saveEdit = () => {
-    if (editTask.trim() === "") return;
-    dispatch(editTaskAction(task.id, editTask));
-    setEdit(false);
-  };
+    if (editTask.trim() === '') return
+    dispatch(editTaskAction(task.id, editTask))
+    setEdit(false)
+  }
   const handleEditClick = () => {
     if (edit) {
-      saveEdit();
+      saveEdit()
     } else {
-      setEdit(true);
+      setEdit(true)
     }
-  };
+  }
 
   return (
-    <div className="style" style={{ paddingTop: "20px" }}>
+    <div className="style" style={{ paddingTop: '20px' }}>
       <label className="checkbox-wrapper">
         <input type="checkbox" checked={task.isDone} onChange={toggleDone} />
         {!edit ? (
-          <p className={task.isDone ? "active" : ""} style={{ width: "125px" }}>
+          <p className={task.isDone ? 'active' : ''} style={{ width: '125px' }}>
             {task.title}
           </p>
         ) : (
@@ -57,11 +57,11 @@ const Task = ({ task }) => {
         )}
       </label>
       <button onClick={handleEditClick}>
-        {edit ? "Сохранить" : "Изменить"}
+        {edit ? 'Сохранить' : 'Изменить'}
       </button>
       <button onClick={deleteTask}>&times;</button>
     </div>
-  );
-};
+  )
+}
 
-export default Task;
+export default Task

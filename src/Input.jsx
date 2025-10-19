@@ -1,26 +1,26 @@
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { addTaskAction } from "./redux/actions/tasksActions";
+import { useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { addTaskAction } from './redux/actions/tasksActions'
 
 const Input = () => {
-  const [value, setValue] = useState("");
-  const dispatch = useDispatch();
+  const [value, setValue] = useState('')
+  const dispatch = useDispatch()
 
   const handleChange = (e) => {
-    setValue(e.target.value);
-  };
+    setValue(e.target.value)
+  }
 
   const addNewTask = () => {
-    const trimmedText = value.trim();
-    if (trimmedText !== "") {
-      dispatch(addTaskAction(trimmedText));
-      setValue("");
+    const trimmedText = value.trim()
+    if (trimmedText !== '') {
+      dispatch(addTaskAction(trimmedText))
+      setValue('')
     }
-  };
+  }
 
   const handleKeyPress = (e) => {
-    if (e.key === "Enter") addNewTask();
-  };
+    if (e.key === 'Enter') addNewTask()
+  }
   return (
     <div className="style">
       <input
@@ -33,7 +33,7 @@ const Input = () => {
       />
       <button onClick={addNewTask}>Добавить</button>
     </div>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input
