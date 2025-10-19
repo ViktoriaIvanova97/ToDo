@@ -1,33 +1,43 @@
+import {
+  ADD_TASK,
+  DELETE_TASK,
+  EDIT_TASK,
+  TOGGLE_DONE,
+  SET_SORT_ORDER,
+  SET_FILTER,
+  DELETE_COMPLETED,
+} from '../actions/tasksActionTypes'
+
 export const addTaskAction = (title) => ({
-  type: 'add',
+  type: ADD_TASK,
   payload: title,
 })
 
 export const deleteTaskAction = (id) => ({
-  type: 'delete',
+  type: DELETE_TASK,
   payload: id,
 })
 
 export const editTaskAction = (id, title) => ({
-  type: 'edit',
+  type: EDIT_TASK,
   payload: { id, title },
 })
 
 export const toggleDoneTaskAction = (id) => ({
-  type: 'toggleDone',
+  type: TOGGLE_DONE,
   payload: id,
 })
 
 export const setSortOrderAction = (order) => ({
-  type: 'setSortOrder',
+  type: SET_SORT_ORDER,
   payload: order,
 })
 
 export const setFilterAction = (filter) => ({
-  type: 'setFilter',
+  type: SET_FILTER,
   payload: filter,
 })
 
 export const deleteCompletedTasksAction = () => ({
-  type: 'deleteCompleted',
+  type: DELETE_COMPLETED,
 })

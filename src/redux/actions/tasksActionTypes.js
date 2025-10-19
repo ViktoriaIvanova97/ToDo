@@ -1,0 +1,7 @@
+export const ADD_TASK = 'add'
+export const DELETE_TASK = 'delete'
+export const EDIT_TASK = 'edit'
+export const TOGGLE_DONE = 'toggleDone'
+export const SET_SORT_ORDER = 'setSortOrder'
+export const SET_FILTER = 'setFilter'
+export const DELETE_COMPLETED = 'deleteCompleted'

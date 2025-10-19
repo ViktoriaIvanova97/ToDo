@@ -1,3 +1,13 @@
+import {
+  ADD_TASK,
+  DELETE_TASK,
+  EDIT_TASK,
+  TOGGLE_DONE,
+  SET_SORT_ORDER,
+  SET_FILTER,
+  DELETE_COMPLETED,
+} from '../actions/tasksActionTypes'
+
 const initialValue = {
   tasks: [],
   filter: 'all',
@@ -6,7 +16,7 @@ const initialValue = {
 
 export const tasksReducer = (store = initialValue, action) => {
   switch (action.type) {
-    case 'add':
+    case ADD_TASK:
       return {
         ...store,
         tasks: [
@@ -19,13 +29,13 @@ export const tasksReducer = (store = initialValue, action) => {
           },
         ],
       }
-    case 'delete':
+    case DELETE_TASK:
       return {
         ...store,
         tasks: store.tasks.filter((item) => item.id !== action.payload),
       }
 
-    case 'edit':
+    case EDIT_TASK:
       return {
         ...store,
         tasks: store.tasks.map((item) =>
@@ -35,23 +45,23 @@ export const tasksReducer = (store = initialValue, action) => {
         ),
       }
 
-    case 'toggleDone':
+    case TOGGLE_DONE:
       return {
         ...store,
         tasks: store.tasks.map((item) =>
           item.id === action.payload ? { ...item, isDone: !item.isDone } : item
         ),
       }
-    case 'setSortOrder':
+    case SET_SORT_ORDER:
       return {
         ...store,
         sortOrder: action.payload,
       }
 
-    case 'setFilter':
+    case SET_FILTER:
       return { ...store, filter: action.payload }
 
-    case 'deleteCompleted': {
+    case DELETE_COMPLETED: {
       return { ...store, tasks: store.tasks.filter((item) => !item.isDone) }
     }
     default:
