@@ -1,30 +1,32 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux'
+import { selectSortOrder } from './redux/selectors'
+import { sortTask } from './slices/filterSlice'
 
 const SortTask = () => {
-  const { sortOrder } = useSelector((store) => store.tasks.sortOrder);
-  const dispatch = useDispatch();
+  const sortOrder = useSelector(selectSortOrder)
+  const dispatch = useDispatch()
 
   const sortUp = () => {
-    dispatch({ type: "setSortOrder", payload: "desc" });
-  };
+    dispatch(sortTask('desc'))
+  }
 
   const sortDown = () => {
-    dispatch({ type: "setSortOrder", payload: "asc" });
-  };
+    dispatch(sortTask('asc'))
+  }
   return (
     <div className="style">
-      <button onClick={sortUp} disabled={sortOrder === "desc"}>
+      <button onClick={sortUp} disabled={sortOrder === 'desc'}>
         Новые сверху
       </button>
       <button
         onClick={sortDown}
-        disabled={sortOrder === "asc"}
-        style={{ marginLeft: "5px" }}
+        disabled={sortOrder === 'asc'}
+        style={{ marginLeft: '5px' }}
       >
         Новые снизу
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default SortTask;
+export default SortTask

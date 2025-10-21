@@ -1,8 +1,9 @@
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
+import { selectCountActive } from "./redux/selectors";
 
 const CountActive = () => {
-  const { tasks } = useSelector((store) => store.tasks);
-  const count = tasks.filter((item) => !item.isDone).length;
+  const count = useSelector(selectCountActive);
+
   return (
     <div>
       <p>Осталось дел: {count}</p>

@@ -1,17 +1,18 @@
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux'
+import { deleteComp } from './slices/tasksSlice'
 
 const DeleteCompleted = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const deleteCompleted = () => {
-    dispatch({ type: "deleteCompleted" });
-  };
+    dispatch(deleteComp())
+  }
 
   return (
     <div>
       <button onClick={deleteCompleted}>Очистить выполненные</button>
     </div>
-  );
-};
+  )
+}
 
-export default DeleteCompleted;
+export default DeleteCompleted
