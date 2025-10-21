@@ -15,7 +15,12 @@ export const localStorageMiddleware = (store) => (next) => (action) => {
 
   if (actionsToSave.includes(action.type)) {
     try {
-      localStorage.setItem("tasksState", JSON.stringify(state.tasks));
+      const dataToSave = {
+        tasks: state.tasks.tasks,
+        filter: state.filter.filter,
+        sortOrder: state.filter.sortOrder,
+      };
+      localStorage.setItem("tasksState", JSON.stringify(dataToSave));
     } catch (e) {
       console.error("Ошибка при сохранении в localStorage:", e);
     }
