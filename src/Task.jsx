@@ -1,10 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import {
-  deleteTaskAction,
-  editTaskAction,
-  toggleDoneTaskAction,
-} from './redux/actions/tasksActions'
+import { deleteTask, toggle, editInput } from './slices/tasksSlice'
 
 const Task = ({ task }) => {
   const [edit, setEdit] = useState(false)
@@ -12,12 +8,12 @@ const Task = ({ task }) => {
 
   const dispatch = useDispatch()
 
-  const deleteTask = () => {
-    dispatch(deleteTaskAction(task.id))
+  const deleteOneTask = () => {
+    dispatch(deleteTask(task.id))
   }
 
   const toggleDone = () => {
-    dispatch(toggleDoneTaskAction(task.id))
+    dispatch(toggle(task.id))
   }
 
   const handleDownEnter = (e) => {
@@ -27,7 +23,7 @@ const Task = ({ task }) => {
   }
   const saveEdit = () => {
     if (editTask.trim() === '') return
-    dispatch(editTaskAction(task.id, editTask))
+    dispatch(editInput({ id: task.id, title: editTask }))
     setEdit(false)
   }
   const handleEditClick = () => {
@@ -59,7 +55,7 @@ const Task = ({ task }) => {
       <button onClick={handleEditClick}>
         {edit ? 'Сохранить' : 'Изменить'}
       </button>
-      <button onClick={deleteTask}>&times;</button>
+      <button onClick={deleteOneTask}>&times;</button>
     </div>
   )
 }

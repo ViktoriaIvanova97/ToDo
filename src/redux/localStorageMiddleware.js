@@ -4,12 +4,13 @@ export const localStorageMiddleware = (store) => (next) => (action) => {
   const state = store.getState();
 
   const actionsToSave = [
-    "add",
-    "delete",
-    "edit",
-    "toggleDone",
-    "deleteCompleted",
-    "setSortOrder",
+    "tasksList/addTask",
+    "tasksList/deleteTask",
+    "tasksList/editInput",
+    "tasksList/toggle",
+    "tasksList/deleteComp",
+    "filter/filterTasks",
+    "filter/sortTask",
   ];
 
   if (actionsToSave.includes(action.type)) {

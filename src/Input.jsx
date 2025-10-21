@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { addTaskAction } from './redux/actions/tasksActions'
+import { addTask } from './slices/tasksSlice'
 
 const Input = () => {
   const [value, setValue] = useState('')
@@ -13,7 +13,7 @@ const Input = () => {
   const addNewTask = () => {
     const trimmedText = value.trim()
     if (trimmedText !== '') {
-      dispatch(addTaskAction(trimmedText))
+      dispatch(addTask(trimmedText))
       setValue('')
     }
   }

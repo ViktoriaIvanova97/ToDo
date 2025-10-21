@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { selectFilter } from './redux/selectors'
-import { setFilterAction } from './redux/actions/tasksActions'
+import { filterTasks } from './slices/filterSlice'
 
 const TasksFilter = () => {
   const dispatch = useDispatch()
   const filter = useSelector(selectFilter)
 
-  const setFilter = (filter) => {
-    dispatch(setFilterAction(filter))
+  const setFilter = (newFilter) => {
+    dispatch(filterTasks(newFilter))
   }
 
   return (

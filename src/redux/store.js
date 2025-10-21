@@ -1,6 +1,7 @@
-import { tasksReducer } from './reducers/tasksReducer'
+import tasksReducer from '../slices/tasksSlice'
+import filterReducer from '../slices/filterSlice'
 import { localStorageMiddleware } from './localStorageMiddleware'
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore} from '@reduxjs/toolkit'
 
 const loadFromLocalStorage = () => {
   try {
@@ -16,8 +17,9 @@ const loadFromLocalStorage = () => {
 const persistedState = loadFromLocalStorage()
 
 export const store = configureStore({
-  reducer: {
+  reducer:{
     tasks: tasksReducer,
+    filter: filterReducer
   },
   preloadedState: persistedState,
   middleware: (getDefaultMiddleware) =>
