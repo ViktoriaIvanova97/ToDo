@@ -1,7 +1,18 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { registerUser, loginUser } from './redux/api'
+import {
+  selectorError,
+  selectorLoading,
+} from './redux/selectors'
 
 const RegisterForm = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const loading = useSelector(selectorLoading)
+  const error = useSelector(selectorError)
+
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -9,18 +20,15 @@ const RegisterForm = () => {
   const [age, setAge] = useState('')
   const [changeForm, setChangeForm] = useState(false)
 
-  const navigate = useNavigate()
-
   const handleRegister = async () => {
     try {
-      //   await register(username, email, password, gender, age);
-      alert('Регистрация успешна!')
-      navigate('/todoform')
-      setUsername('')
-      setEmail('')
-      setPassword('')
-      setGender('')
-      setAge('')
+      const result = await dispatch(
+        registerUser({ username, email, password, gender, age })
+      )
+      if (registerUser.fulfilled.match(result)) {
+        alert('Регистрация успешна!')
+        navigate('/todoform')
+      }
     } catch (error) {
       alert(error.message)
     }
@@ -28,11 +36,11 @@ const RegisterForm = () => {
 
   const handleLogin = async () => {
     try {
-      //   await login(email, password);
-      alert('Вход успешен!')
-      navigate('/todoform')
-      setEmail('')
-      setPassword('')
+      const result = await dispatch(loginUser({ email, password }))
+      if (loginUser.fulfilled.match(result)) {
+        alert('Вход успешен')
+        navigate('/todoform')
+      }
     } catch (error) {
       alert(error.message)
     }
@@ -82,9 +90,10 @@ const RegisterForm = () => {
         placeholder="Возраст"
         autoComplete="off"
       />
-      <button type="button" onClick={handleRegister}>
-        Зарегистрироваться
+      <button type="button" onClick={handleRegister} disabled={loading}>
+        {loading ? 'Регистрация...' : 'Зарегистрироваться'}
       </button>
+      {error && <h3 style={{ color: 'red' }}>{error}</h3>}
       <div style={{ display: 'flex', alignItems: ' center', gap: ' 15px' }}>
         <h3>Уже есть аккаунт? </h3>
         <button type="button" onClick={() => setChangeForm(false)}>
@@ -95,23 +104,26 @@ const RegisterForm = () => {
   ) : (
     <form className="registerForm" autoComplete="off">
       <h2>Авторизация</h2>
-      <input className="inputRegister"
+      <input
+        className="inputRegister"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Email"
         autoComplete="off"
       />
-      <input className="inputRegister"
+      <input
+        className="inputRegister"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Пароль"
         autoComplete="new-password"
       />
-      <button type="button" onClick={handleLogin}>
-        Войти
+      <button type="button" onClick={handleLogin} disabled={loading}>
+        {loading ? 'Вход...' : 'Войти'}
       </button>
+      {error && <h3 style={{ color: 'red' }}>{error}</h3>}
       <div style={{ display: 'flex', alignItems: ' center', gap: ' 15px' }}>
         <h3>Еще нет аккаунта?</h3>
         <button type="button" onClick={() => setChangeForm(true)}>
