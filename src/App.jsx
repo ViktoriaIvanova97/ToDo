@@ -1,48 +1,16 @@
-import "./App.css";
-import Input from "./Input";
-import TasksList from "./TasksList";
-import TasksFilter from "./TasksFilter";
-import DeleteCompleted from "./DeleteCompleted";
-import CountActive from "./CountActive";
+import { Routes, Route, Navigate } from "react-router-dom";
+import './App.css'
+import ToDoForm from './ToDoForm'
+import RegisterForm from './RegisterForm'
 
 function App() {
-
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100vh",
-      }}
-    >
-      <h2>To-Do List</h2>
-      <div className="component">
-        <Input />
-      </div>
-      <div className="component">
-        <TasksList />
-      </div>
-      <div className="component">
-        <TasksFilter />
-      </div>
-      <div
-        className="component"
-        style={{
-          display: "flex",
-          width: "370px",
-          alignItems: "center",
-          justifyContent: "space-between",
-          color: "#333",
-          fontWeight: "500",
-        }}
-      >
-        <DeleteCompleted />
-        <CountActive />
-      </div>
-    </div>
-  );
+    <Routes>
+      <Route path="/" element={<Navigate to="/registerform" replace />} />
+      <Route path="/registerform" element={<RegisterForm />} />
+      <Route path="/todoform" element={<ToDoForm />} />
+    </Routes>
+  )
 }
 
-export default App;
+export default App
