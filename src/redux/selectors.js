@@ -5,6 +5,7 @@ export const selectorToken = (state) => state.auth.token
 export const selectorLoading = (state) => state.auth.loading
 export const selectorError = (state) => state.auth.error
 
+export const task = (state) => state
 export const selectFilteredTasks = (state) => {
   const tasks = state.tasks.tasks
   const filter = state.filter.filter

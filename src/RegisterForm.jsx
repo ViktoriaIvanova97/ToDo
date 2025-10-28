@@ -1,15 +1,17 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { registerUser, loginUser } from './redux/api'
+import { registerUser, loginUser , getTasks} from './redux/api'
 import {
   selectorError,
   selectorLoading,
+  selectorToken,
 } from './redux/selectors'
 
 const RegisterForm = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const token = useSelector(selectorToken)
   const loading = useSelector(selectorLoading)
   const error = useSelector(selectorError)
 
@@ -40,6 +42,7 @@ const RegisterForm = () => {
       if (loginUser.fulfilled.match(result)) {
         alert('Вход успешен')
         navigate('/todoform')
+        dispatch(getTasks(token))
       }
     } catch (error) {
       alert(error.message)

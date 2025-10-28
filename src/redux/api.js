@@ -59,3 +59,57 @@ export const loginUser = createAsyncThunk(
     }
   }
 )
+
+export const addNewTask = createAsyncThunk(
+  'tasksList/addNewTask',
+  async ({ token, title }, thunkAPI) => {
+    try {
+      const res = await fetch('https://todo-redev.herokuapp.com/api/todos', {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ title }),
+      })
+		const response = await res.json()
+
+      if (!res.ok) {
+        return thunkAPI.rejectWithValue(
+          response.message || 'Ошибка добавления задачи'
+        )
+      }
+
+      return response
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
+
+export const getTasks = createAsyncThunk(
+  'tasksList/getTasks',
+  async ( {token }, thunkAPI) => {
+    try {
+      const res = await fetch('https://todo-redev.herokuapp.com/api/todos', {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      const response = await res.json()
+console.log(response);
+      if (!res.ok) {
+        return thunkAPI.rejectWithValue(
+          response.message || 'Ошибка получения задач'
+        )
+      }
+
+      return response
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
