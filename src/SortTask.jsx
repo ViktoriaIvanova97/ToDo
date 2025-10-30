@@ -10,6 +10,7 @@ const SortTask = () => {
     dispatch(sortTask('desc'))
   }
 
+  
   const sortDown = () => {
     dispatch(sortTask('asc'))
   }

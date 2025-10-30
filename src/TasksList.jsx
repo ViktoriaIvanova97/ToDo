@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 import Task from "./Task";
 import SortTask from "./SortTask";
-import { selectVisibleTasks } from "./redux/selectors";
+import { selectVisibleTasks} from "./redux/selectors";
+
 
 const TasksList = () => {
   const tasks = useSelector(selectVisibleTasks)
