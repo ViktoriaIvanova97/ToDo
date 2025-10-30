@@ -1,19 +1,23 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { deleteTask, toggle, editInput } from './slices/tasksSlice'
+import { editInput } from './slices/tasksSlice'
+import { deleteTask, toggleTaskDone } from './redux/api'
 
 const Task = ({ task }) => {
   const [edit, setEdit] = useState(false)
   const [editTask, setEditTask] = useState(task.title)
+  const token = localStorage.getItem('token')
 
   const dispatch = useDispatch()
 
   const deleteOneTask = () => {
-    dispatch(deleteTask(task.id))
+    dispatch(deleteTask({ token, id: task.id }))
   }
 
   const toggleDone = () => {
-    dispatch(toggle(task.id))
+    dispatch(
+      toggleTaskDone({ token, id: task.id, isCompleted: task.isCompleted })
+    )
   }
 
   const handleDownEnter = (e) => {
@@ -37,9 +41,9 @@ const Task = ({ task }) => {
   return (
     <div className="style" style={{ paddingTop: '20px' }}>
       <label className="checkbox-wrapper">
-        <input type="checkbox" checked={task.isDone} onChange={toggleDone} />
+        <input type="checkbox" checked={task.isCompleted} onChange={toggleDone} />
         {!edit ? (
-          <p className={task.isDone ? 'active' : ''} style={{ width: '125px' }}>
+          <p className={task.isCompleted ? 'active' : ''} style={{ width: '125px' }}>
             {task.title}
           </p>
         ) : (

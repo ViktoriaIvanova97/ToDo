@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { addNewTask, getTasks } from './redux/api'
+import { addNewTask, } from './redux/api'
 
 const Input = () => {
   const [value, setValue] = useState('')

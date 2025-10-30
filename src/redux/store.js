@@ -14,4 +14,16 @@ export const store = configureStore({
   },
   preloadedState: persistedState,
 })
-
+store.subscribe(() => {
+  const state = store.getState()
+  try {
+    const dataToSave = {
+      tasks: state.tasks.tasks,
+      filter: state.filter.filter,
+      sortOrder: state.filter.sortOrder,
+    }
+    localStorage.setItem('tasksState', JSON.stringify(dataToSave))
+  } catch (e) {
+    console.error('Ошибка при сохранении в localStorage:', e)
+  }
+})

@@ -4,9 +4,12 @@ export const loadFromLocalStorage = () => {
     const serializedState = localStorage.getItem('tasksState')
     if (!serializedState) return undefined
     const parsed = JSON.parse(serializedState)
-    console.log(parsed);
     return {
-      tasks: { tasks: parsed || [] },
+      tasks: { tasks: parsed.tasks || [] },
+      filter: {
+        filter: parsed.filter || 'all',
+        sortOrder: parsed.sortOrder || 'desc',
+      },
     }
   } catch (e) {
     console.error('Ошибка загрузки из localStorage', e)

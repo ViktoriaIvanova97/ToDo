@@ -73,7 +73,7 @@ export const addNewTask = createAsyncThunk(
         },
         body: JSON.stringify({ title }),
       })
-		const response = await res.json()
+      const response = await res.json()
 
       if (!res.ok) {
         return thunkAPI.rejectWithValue(
@@ -90,7 +90,7 @@ export const addNewTask = createAsyncThunk(
 
 export const getTasks = createAsyncThunk(
   'tasksList/getTasks',
-  async ( {token }, thunkAPI) => {
+  async ({ token }, thunkAPI) => {
     try {
       const res = await fetch('https://todo-redev.herokuapp.com/api/todos', {
         method: 'GET',
@@ -100,7 +100,7 @@ export const getTasks = createAsyncThunk(
         },
       })
       const response = await res.json()
-console.log(response);
+
       if (!res.ok) {
         return thunkAPI.rejectWithValue(
           response.message || 'Ошибка получения задач'
@@ -110,6 +110,91 @@ console.log(response);
       return response
     } catch (error) {
       console.log(error)
+    }
+  }
+)
+
+export const deleteTask = createAsyncThunk(
+  'tasksList/deleteTask',
+  async ({ token, id }, thunkAPI) => {
+    try {
+      const res = await fetch(
+        `https://todo-redev.herokuapp.com/api/todos/${id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      const response = await res.json()
+      if (!res.ok) {
+        return thunkAPI.rejectWithValue(
+          response.message || 'Ошибка удаления задачи'
+        )
+      }
+
+      return response
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
+
+export const toggleTaskDone = createAsyncThunk(
+  'tasksList/toggleTaskDone',
+  async ({ token, id, isCompleted }, thunkAPI) => {
+    try {
+      const res = await fetch(
+        `https://todo-redev.herokuapp.com/api/todos/${id}/isCompleted`,
+        {
+          method: 'PATCH',
+          headers: {
+            accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      const response = await res.json({ isCompleted: !isCompleted })
+
+      if (!res.ok) {
+        return thunkAPI.rejectWithValue(
+          response.message || 'Ошибка чекбокса isCompleted'
+        )
+      }
+
+      return { id, isCompleted: !isCompleted }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
+
+export const deleteCompletedTasks = createAsyncThunk(
+  'tasksList/deleteCompletedTasks ',
+  async ({ token, tasks },thunkAPI) => {
+    try {
+
+      const completedTasks = tasks.filter((t) => t.isCompleted)
+
+
+      await Promise.all(
+        completedTasks.map((t) =>
+          fetch(`https://todo-redev.herokuapp.com/api/todos/${t.id}`, {
+            method: 'DELETE',
+            headers: {
+              accept: 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+          })
+        )
+      )
+
+      return completedTasks.map((t) => t.id)
+    } catch (error) {
+		return thunkAPI.rejectWithValue(error.message)
     }
   }
 )
