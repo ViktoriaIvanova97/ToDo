@@ -100,7 +100,7 @@ const RegisterForm = () => {
       <div style={{ display: 'flex', alignItems: ' center', gap: ' 15px' }}>
         <h3>Уже есть аккаунт? </h3>
         <button type="button" onClick={() => setChangeForm(false)}>
-          Логин
+          Log In!
         </button>
       </div>
     </form>
@@ -130,7 +130,7 @@ const RegisterForm = () => {
       <div style={{ display: 'flex', alignItems: ' center', gap: ' 15px' }}>
         <h3>Еще нет аккаунта?</h3>
         <button type="button" onClick={() => setChangeForm(true)}>
-          Регистрация
+          Sing Up!
         </button>
       </div>
     </form>
